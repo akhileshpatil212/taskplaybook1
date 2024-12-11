@@ -1,1 +1,25 @@
-ansible pull
+---
+- name: Install Git and pull the code
+  hosts: dev
+  become: yes
+  connection: ssh
+  vars:
+    repo_url: "https://github.com/sathvik5088/work.git"
+    dest: "/home/ansible"
+  tasks:
+  - name: To install Git
+    yum: 
+      name: git
+      state: present
+  - name: Clone the repository
+    git:
+      repo: "{{ repo_url }}"
+      dest: "{{ dest }}"
+      version: main
+  - name: Pull the latest code
+    git:
+      repo: "{{ repo_url }}"
+      dest: "{{ dest }}"
+      version: main
+      force: yes
+      update: yes
