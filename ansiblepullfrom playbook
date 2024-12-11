@@ -4,7 +4,7 @@
   become: yes
   connection: ssh
   vars:
-    repo_url: "https://github.com/sathvik5088/work.git"
+    repo_url: 
     dest: "/home/ansible"
   tasks:
   - name: To install Git
